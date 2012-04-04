@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  is_public: false
+  is_codebits: false
+
+two:
+  name: MyString
+  description: MyString
+  is_public: false
+  is_codebits: false

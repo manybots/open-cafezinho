@@ -1,0 +1,31 @@
+<%= content_for :title, " at #{@machine.name}" %>
+
+<%- if @machine.icon.present? -%>
+  <%= image_tag @machine.icon, :align => 'left', :style => 'margin-right: 8px;', :width => "48" %>
+<%- end -%>
+<h1><%= @machine.name %></h1>
+
+<p>
+  <%= @machine.description %>
+</p>
+
+
+<p>You're trying to drink a coffee at <strong><%= @machine.name %></strong>.</p>
+
+<div class="span6">
+  <%= form_for(@drink, html: {class: 'form-stacked'}) do |f| %>
+    <%= f.hidden_field :machine_id %>
+    <%= f.hidden_field :user_id %>
+
+    <div class="clearfix">
+      <%= f.label :coffee_type_id, "Coffee Type" %>
+      <div class="input">
+        <%= f.grouped_collection_select :coffee_type_id, @brands, :coffee_types, :name, :id, :name %>      
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Drink up', class: 'btn primary' %>
+    </div>
+  <% end %>
+</div>

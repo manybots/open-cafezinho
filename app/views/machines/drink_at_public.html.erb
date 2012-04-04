@@ -1,0 +1,22 @@
+<%= content_for :title, " at #{@machine.name}" %>
+
+<%- if @machine.icon.present? -%>
+  <%= image_tag @machine.icon, :align => 'left', :style => 'margin-right: 8px;', :width => "48" %>
+<%- end -%>
+<h1><%= @machine.name %></h1>
+
+<p>
+  <%= @machine.description %>
+</p>
+
+<p>You're trying to drink a coffee at <strong><%= @machine.name %></strong>.</p>
+
+<p>Login with your Manybots account an start tracking your coffee intake now with Cafézinho.</p>
+
+<p style="padding: 20px 0;"><%= link_to 'Login with Manybots', '/users/auth/manybots', class: 'btn success' %></p>
+
+<h3>Codebits special!</h3>
+
+<p>Check out the machines around the Codebits Venue and look for QR Codes: use them to easily track your coffee intake.</p>
+
+<p style="text-align:center; margin-top: 69px;">Developed by and for <a href="https://www.manybots.com">Manybots</a></p>

@@ -1,0 +1,49 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+body {
+   padding-top: 50px !important;
+}
+
+.main-page {
+  padding: 0px 5px;
+}
+.well {
+  padding: 10px;
+  margin: 0;
+  width:100%;
+}
+.well.stats-button {
+  margin-right: 6px;
+}
+.stats-button h1 {
+  font-size: 4em;
+  padding: 15px 0;
+}
+.img-button img {
+  padding: 10px 0 10px 0;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+
+html[xmlns] .clearfix {
+  display: block;
+}
+
+* html .clearfix {
+  height: 1%;
+}

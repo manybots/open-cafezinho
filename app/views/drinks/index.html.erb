@@ -1,0 +1,27 @@
+<h1>All your coffees</h1>
+
+<div class="clearfix">
+  <% @drinks.each do |drink| %>
+    <div class="well clearfix" style="width: 100%;">
+      <div style="float:left">
+        <p style="margin-bottom: 0"><%= l(drink.created_at, :format => :short) %></p>
+        <h5 style="margin:0;padding:0;"><%= drink.coffee_type.brand.name %> / <%= drink.coffee_type.name %></h5>
+        <p><%= link_to drink.machine.name, drink.machine %></p>
+      </div>
+      <div style="float:right;padding-top:22px;">
+        <p>
+          <%- if !drink.favorite.present? -%>
+            <%= link_to('Favorite', favorite_drink_path(drink)) %>
+          <%- else -%>
+            <%= link_to('Unfavorite', unfavorite_drink_path(drink)) %>
+          <%- end -%>
+          &nbsp;
+          <%= link_to 'Repeat', drink_at_path(drink.machine.slug, drink.coffee_type_id), class: 'btn primary' %> 
+          <%= link_to 'Destroy', drink, confirm: 'Are you sure?', method: :delete, class: 'btn danger' %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'Back', root_path %>

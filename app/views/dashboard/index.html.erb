@@ -1,0 +1,94 @@
+<div class="clearfix" style="width:100%;">
+  <div class="well stats-button" style="margin-left: 0px; float:left; width: 25%; text-align:center;">
+    <h1><%= @drank_today %></h1>
+    <p style="margin-top:0;">Coffees drank today</p>
+  </div>
+  <div class="well stats-button" style="float:left; width: 25%; text-align:center;">
+    <h1><%= @drank_7_days %></h1>
+    <p style="margin-top:0;">Drank this week</p>
+  </div>
+  <div class="well stats-button" style="float:left; width: 25%; text-align:center;">
+    <h1><%= @drank_overall %></h1>
+    <p style="margin-top:0;">Total coffees drank</p>
+  </div>
+</div>
+
+<h2>Favorites</h2>
+
+<div class="clearfix">
+<% @favorite_drinks.each do |drink| %>
+  <div class="well clearfix" style="width: 100%;">
+    <div style="float:left">
+      <h5 style="margin:0;padding:0"><%= drink.coffee_type.brand.name %> / <%= drink.coffee_type.name %></h5>
+      <p><%= link_to drink.machine.name, drink.machine %></p>
+    </div>
+    <div style="float:right;padding-top:10px;">
+      <p>
+        <%= link_to 'Unfavorite', unfavorite_drink_path(drink.id) %>        
+        &nbsp;
+        <%= link_to 'Repeat', drink_at_path(drink.machine.slug, drink.coffee_type_id), class: 'btn primary' %> 
+      </p>
+    </div>
+  </div>
+<% end %>
+</div>
+<br />
+
+<h2>Machines</h2>
+<div class="clearfix">
+  <% @machines.each do |machine| %>
+    <div class="well clearfix" style="width: 100%;">
+      <div style="float:left">
+        <h5 style="margin:0;padding:0;"><%= link_to machine.name, machine %></h5>
+        <p><%= machine.description %></p>
+      </div>
+      <div style="float:right;padding-top:22px;">
+        <p>
+          <%= link_to 'Drink', drink_at_path(machine.slug), class: 'btn primary' %> 
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<p>
+  <%= link_to 'Manage machines', machines_path, class: 'btn small' %>
+  <%= link_to 'New machine', new_machine_path, class: 'btn small success' %>
+</p>
+
+<h2>Recent</h2>
+<div class="clearfix">
+  <% @drinks.each do |drink| %>
+    <div class="well clearfix" style="width: 100%;">
+      <div style="float:left">
+        <p style="margin-bottom: 0"><%= l(drink.created_at, :format => :short) %></p>
+        <h5 style="margin:0;padding:0;"><%= drink.coffee_type.brand.name %> / <%= drink.coffee_type.name %></h5>
+        <p><%= link_to drink.machine.name, drink.machine %></p>
+      </div>
+      <div style="float:right;padding-top:22px;">
+        <p>
+          <%- if !drink.favorite.present? -%>
+            <%= link_to('Favorite', favorite_drink_path(drink)) %>
+          <%- else -%>
+            <%= link_to('Unfavorite', unfavorite_drink_path(drink)) %>
+          <%- end -%>
+          &nbsp;
+          <%= link_to 'Repeat', drink_at_path(drink.machine.slug, drink.coffee_type_id), class: 'btn primary' %> 
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<p>
+  <%= link_to 'Manage coffees', drinks_path, class: 'btn small' %>
+</p>
+
+
+<h3>Use with Manybots</h3>
+
+<p>Every coffee you log with Cafézinho is submitted as an activity to your Manybots account.</p>
+
+<p>Use this to correlate your coffee intake with your productivity, or to help you drink less coffee, or spend less money with it.</p>
+
+<p><%= link_to 'Go to Manybots →', 'https://www.manybots.com' %>

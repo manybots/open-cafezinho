@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  brand: MyString
+  name: MyString
+  icon: MyString
+
+two:
+  brand: MyString
+  name: MyString
+  icon: MyString

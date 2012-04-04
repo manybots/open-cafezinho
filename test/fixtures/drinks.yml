@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  machine_id: 1
+  coffee_type_id: 1
+  user_id: 1
+
+two:
+  machine_id: 1
+  coffee_type_id: 1
+  user_id: 1

@@ -1,0 +1,25 @@
+<h3>Machines</h3>
+<div class="clearfix">
+  <% @machines.each do |machine| %>
+    <div class="well clearfix" style="width: 100%;">
+      <div style="float:left">
+        <h5 style="margin:0;padding:0;"><%= link_to machine.name, machine %></h5>
+        <p><%= machine.description %></p>
+      </div>
+      <div style="float:right;padding-top:22px;">
+        <p>
+          <%= link_to 'Drink', drink_at_path(machine.slug), class: 'btn' %> 
+          <%= link_to 'Details', machine, class: 'btn info' %> 
+          <%- unless machine.is_public? -%>
+            <%= link_to 'Edit', edit_machine_path(machine), class: 'btn primary' %> 
+            <%= link_to 'Destroy', machine, confirm: 'Are you sure?', method: :delete, class: 'btn danger' %>
+          <%- end -%>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<p><%= link_to 'New Machine', new_machine_path, class: 'btn success' %></p>
+
+<p><%= link_to 'Back', root_path %></p>

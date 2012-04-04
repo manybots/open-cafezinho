@@ -1,0 +1,63 @@
+<h1>Codebits Stats</h1>
+
+<div class="clearfix" style="width:100%;">
+  <div class="well stats-button" style="margin-left: 0px; float:left; width: 25%; text-align:center;">
+    <h1><%= @drinks.count %></h1>
+    <p style="margin-top:0;">Coffees drank</p>
+  </div>
+  <div class="well stats-button" style="float:left; width: 25%; text-align:center;">
+    <h1><%= @users.uniq.count %></h1>
+    <p style="margin-top:0;">People are counting</p>
+  </div>
+  <div class="well stats-button" style="float:left; width: 25%; text-align:center;">
+    <h1><%= @machines.count %></h1>
+    <p style="margin-top:0;">Machines available</p>
+  </div>
+</div>
+
+
+<h2>Top coffee drinkers at Codebits</h2>
+
+<div class="clearfix">
+  <%- @top_users.each do |user| -%>
+    <% user = user.to_a.flatten  %>
+    <div class="well clearfix" style="">
+      <div style="float:left; padding: 10px;">  
+        <div style="float:left">
+          <%= image_tag user.first.manybots_avatar_url, :width => '40', :style => 'margin-right: 12px;' %>
+        </div>
+        <div style="float: left">
+          <h5 style="margin:0;padding:0;"><%= user.first.name %></h5>
+        </div>
+      </div>
+      <div style="float:right;padding-top:17px;">
+        <p style="font-weight: bold; font-size: 1.5em;">
+          <%= user.last %>
+        </p>
+      </div>
+    </div>
+  <%- end -%>
+</div>
+
+
+<h2>Top machines</h2>
+
+<div class="clearfix">
+  <%- @top_machines.each do |machine| -%>
+    <div class="well clearfix" style="">
+      <div style="float:left; padding: 10px;">  
+        <div style="float:left">
+          <%= image_tag machine.icon, :width => '40', :style => 'margin-right: 12px;' %>
+        </div>
+        <div style="float: left">
+          <h5 style="margin:0;padding:0;"><%= machine.name %></h5>
+        </div>
+      </div>
+      <div style="float:right;padding-top:22px;">
+        <p style="font-weight: bold; font-size: 1.5em;">
+          <%= machine.drinks.count %>
+        </p>
+      </div>
+    </div>
+  <%- end -%>
+</div>

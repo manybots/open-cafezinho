@@ -1,0 +1,28 @@
+<%= content_for :title, " at #{@machine.name}" %>
+
+<%- if @machine.icon.present? -%>
+  <%= image_tag @machine.icon, :align => 'left', :style => 'margin-right: 8px;', :width => "48" %>
+<%- end -%>
+<h1><%= @machine.name %></h1>
+
+<p>
+  <%= @machine.description %>
+</p>
+
+
+<p><%= link_to "https://cafezinho.herokuapp.com/at/#{@machine.slug}", "https://cafezinho.herokuapp.com/at/#{@machine.slug}"  %>
+
+<div class="clearfix">
+  <%= machine_qr_code(@machine.slug) %>
+</div>
+
+<p>
+<%- if current_user.id == @machine.user_id -%>
+  <%= link_to 'Edit', edit_machine_path(@machine), class: 'btn' %>
+<%- end -%>
+  <%= link_to 'Drink here', drink_at_path(@machine.slug), class: 'btn primary' %>
+</p>
+
+<p>
+  <%= link_to 'Back', root_path %>
+</p>

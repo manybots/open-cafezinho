@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <title>Cafézinho<%= yield :title %> </title>
+  <%= stylesheet_link_tag   "application" %>
+  <!-- <link rel="stylesheet" href="/bootstrap.min.css"> -->
+  <%= javascript_include_tag "application" %>
+
+  <%= csrf_meta_tags %>
+
+  <style type="text/css" media="screen">
+ 
+  </style>
+</head>
+<body>
+  <div class="topbar-wrapper" style="z-index: 5;">
+      <div class="topbar" data-dropdown="dropdown">
+        <div class="topbar-inner">
+          <div class="container">
+            <h3><a href="/">Cafézinho</a></h3>
+            <ul class="nav">
+              <li class="<%= "active" if controller_name == 'dashboard' %>"><a href="/">Home</a></li>
+              <%- if current_user -%>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle">Manage</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/machines">Machines</a></li>
+                    <li><a href="/drinks">Coffees</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </li>
+              <%- end -%>
+            </ul>
+          </div>
+        </div><!-- /topbar-inner -->
+      </div><!-- /topbar -->
+    </div>
+  <div class="main-page">
+    <%- if notice.present? -%>
+      <p id="notice" style="text-align:center;"><%= notice %></p>
+    <%- end -%>
+    <%= yield %>
+  </div>
+
+</body>
+</html>
